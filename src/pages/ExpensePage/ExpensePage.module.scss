@@ -8,11 +8,12 @@
     align-items: stretch;
     justify-content: stretch;
 
-    * {
+    >* {
         flex-grow: 1;
     }
 
-    background: linear-gradient(to right, rgb(233, 251, 255), rgb(240, 255, 251));
+    // background: linear-gradient(to right, rgb(233, 251, 255), rgb(240, 255, 251));
+    background-color: rgba(203, 174, 209, 0.51);
 }
 
 .addBtn {

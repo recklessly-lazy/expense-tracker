@@ -17,15 +17,32 @@
     border-radius: 10px 10px 0px 0px;
     background-color: rgb(255, 255, 255);
     z-index: 7;
-    animation: formEntry 0.5s ease-in;
+}
+
+.entry {
+    animation: formEntry 0.3s ease-in forwards;
+}
+
+.exit {
+    animation: formExit 0.3s ease-out forwards;
 }
 
 @keyframes formEntry {
-    from{
+    from {
         transform: translateY(500px);
     }
-    to{
+
+    to {
         transform: translateY(0);
     }
 }
 
+@keyframes formExit {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(500px);
+    }
+}

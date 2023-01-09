@@ -11,12 +11,17 @@ function ExpensePage() {
     return (
         <div className={styles.expensePage}>
             <ExpensesList />
-            <NewExpenseForm show={showExpenseform} />
+            <NewExpenseForm
+                onExpenseAdd={() => {
+                    setShowExpenseform(false);
+                }}
+                show={showExpenseform}
+            />
             <button className={styles.addBtn} onClick={toggleAddExpenseForm}>
                 {!showExpenseform ? (
                     <i className="bi bi-plus" style={{ fontSize: "2rem" }}></i>
                 ) : (
-                    <i className="bi bi-x"style={{fontSize: '2rem'}} ></i>
+                    <i className="bi bi-x" style={{ fontSize: "2rem" }}></i>
                 )}
             </button>
         </div>
