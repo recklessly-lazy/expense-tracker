@@ -9,13 +9,13 @@ function Header({ height }: { height: string | number }) {
                 height: height + "px",
             }}
         >
-            <h3>
+            <h5>
                 <strong>Expense Tracker</strong>
-            </h3>
-            <ul className={style.ul}>
+            </h5>
+            {/* <ul className={style.ul}>
                 <li>Link 1</li>
                 <li>Link 2</li>
-            </ul>
+            </ul> */}
         </div>
     );
 }

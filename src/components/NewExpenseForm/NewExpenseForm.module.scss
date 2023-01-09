@@ -1,10 +1,5 @@
 .form {
-    // position: absolute;
-    // bottom: 100px;
-    // margin: 0 auto;
-    // width: 50%;
     position: fixed;
-    // top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -44,5 +39,11 @@
 
     to {
         transform: translateY(500px);
+    }
+}
+
+@media (max-width: 450px){
+    .form{
+        max-width: 90%;
     }
 }

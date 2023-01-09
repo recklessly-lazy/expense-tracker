@@ -8,7 +8,11 @@
     position: relative;
     justify-content: flex-start;
     align-items: center;
-    // > *{
-    //     flex-grow: 1;
-    // }
+
+}
+
+@media (max-width: 450px) {
+    .listContainer{
+        width: 95%;
+    }
 }

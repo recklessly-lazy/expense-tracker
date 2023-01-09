@@ -1,14 +1,24 @@
-import { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Expense } from "../../models/Expense";
 import styles from "./ExpenseItem.module.scss";
 import { useAppDispatch } from "../../hooks/hooks";
 import { removeExpense } from "../../reducers/ExpenseListReducer";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
-import { CSSTransition } from "react-transition-group";
+
+const DateComp = ({ dateStr }: { dateStr: string }) => {
+    let date = new Date(dateStr);
+    return (
+        <>
+            <div className={styles.dateComp}>
+                <span>{date.toLocaleString("en-US", { month: "short" })}</span>
+                <span>{date.toLocaleString("en-US", { year: "numeric" })}</span>
+                <span>{date.toLocaleString("en-US", { day: "2-digit" })}</span>
+            </div>
+        </>
+    );
+};
 
 function ExpenseItem({ expense }: { expense: Expense }) {
-    const nodeRef = useRef(null);
-
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
     const deleteExpense = (isConfirmed: boolean) => {
@@ -17,25 +27,17 @@ function ExpenseItem({ expense }: { expense: Expense }) {
     };
     return (
         <>
-            {showModal && (
-                <CSSTransition
-                    in
-                    mountOnEnter
-                    unmountOnExit
-                    timeout={1000}
-                    nodeRef={nodeRef}
-                    classNames={{
-                        enter: styles.modal,
-                        exit: styles.modalExit,
-                    }}
-                    addEndListener={() => {}}
-                >
-                    <ConfirmationModal ref={nodeRef} confirm={deleteExpense} />
-                </CSSTransition>
-            )}
+            <ConfirmationModal
+                item={expense.title}
+                show={showModal}
+                confirm={deleteExpense}
+            />
             <div className={styles.expenseItem}>
                 <div className="d-flex flex-row justify-content-between container">
-                    <h4 className="mb-0">{expense.title}</h4>
+                    <div className="d-flex flex-row justify-content-evenly align-items-center">
+                        <DateComp dateStr={expense.date} />
+                        <h4 className="ps-5 mb-0">{expense.title}</h4>
+                    </div>
                     <div className="mb-0 d-flex flex-row justify-content-between align-items-center">
                         <strong className="pe-4">
                             &#8377;{expense.amount}
