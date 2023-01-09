@@ -1,14 +1,16 @@
-import React from 'react'
-import styles from './ExpensePage.module.scss'
-import ExpensesList from '../../components/ExpensesList/ExpensesList'
+import React from "react";
+import styles from "./ExpensePage.module.scss";
+import ExpensesList from "../../components/ExpensesList/ExpensesList";
+import NewExpenseForm from "../../components/NewExpenseForm/NewExpenseForm";
 
 function ExpensePage() {
-  return (
-      <div className={styles.mainContent}>
-          <ExpensesList />
-          {/* <Expe */}
-    </div>
-  )
+    return (
+        <div className={styles.expensePage}>
+            <ExpensesList />
+            <NewExpenseForm />
+            {/* <Expe */}
+        </div>
+    );
 }
 
-export default ExpensePage
+export default ExpensePage;

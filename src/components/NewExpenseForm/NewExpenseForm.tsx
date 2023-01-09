@@ -1,11 +1,20 @@
 import React from "react";
+import styles from './NewExpenseForm.module.scss'
 
 function NewExpenseForm() {
     return (
-        <div>
-            <form action="">
-                <input type="text" placeholder="expense title" />
-                <input type="text" name="" id="" />
+        <div className={styles.form}>
+            <form>
+                <input
+                    type="text"
+                    name="expense_title"
+                    placeholder="expense title"
+                />
+                <input
+                    type="number"
+                    name="expense_amount"
+                    placeholder="expense amount"
+                />
             </form>
         </div>
     );

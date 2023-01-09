@@ -1,8 +1,12 @@
-.mainContent{
+.expensePage{
     display: flex;
     flex-direction: column;
     width: 80%;
+    height: 100%;
     margin: 0 auto;
     align-items: stretch;
-    justify-content: flex-start;
+    justify-content: stretch;
+    * {
+        flex-grow: 1;
+    }
 }
