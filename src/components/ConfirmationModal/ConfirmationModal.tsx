@@ -15,7 +15,7 @@ export default function ConfirmationModal({
     const nodeRef = useRef(null);
     return (
         <>
-            <BackDrop show={show} />
+            <BackDrop show={show} onBackdropClick={confirm}/>
             <CSSTransition
                 in={show}
                 mountOnEnter

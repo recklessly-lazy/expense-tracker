@@ -3,10 +3,10 @@ import styles from "./BackDrop.module.scss";
 import { CSSTransition } from "react-transition-group";
 
 function BackDrop({
-    onClick,
+    onBackdropClick,
     show,
 }: {
-    onClick?: CallableFunction;
+    onBackdropClick?: Function;
     show: boolean;
 }) {
     const nodeRef = useRef(null);
@@ -23,7 +23,13 @@ function BackDrop({
                 addEndListener={() => {}}
                 nodeRef={nodeRef}
             >
-                <div className={styles.backDrop} ref={nodeRef}></div>
+                <div
+                    onClick={() => {
+                        if (onBackdropClick) onBackdropClick();
+                    }}
+                    className={styles.backDrop}
+                    ref={nodeRef}
+                ></div>
             </CSSTransition>
         </>
     );

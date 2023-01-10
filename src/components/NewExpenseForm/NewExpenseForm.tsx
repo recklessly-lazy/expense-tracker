@@ -43,7 +43,7 @@ function NewExpenseForm({
     console.log("classes = ", classes);
     let content = (
         <>
-            <BackDrop show={show} onClick={() => {}} />
+            <BackDrop show={show} onBackdropClick={onExpenseAdd} />
             <div
                 className={classes}
                 onAnimationEnd={() => {

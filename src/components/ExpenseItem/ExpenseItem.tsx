@@ -21,7 +21,7 @@ const DateComp = ({ dateStr }: { dateStr: string }) => {
 function ExpenseItem({ expense }: { expense: Expense }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
-    const deleteExpense = (isConfirmed: boolean) => {
+    const deleteExpense = (isConfirmed: boolean = false) => {
         if (isConfirmed) dispatch(removeExpense(expense));
         setShowModal(false);
     };
