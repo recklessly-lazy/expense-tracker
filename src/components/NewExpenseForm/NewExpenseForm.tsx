@@ -51,7 +51,8 @@ function NewExpenseForm({
                     if (!show) setRender(false);
                 }}
             >
-                <form className="pb-2" onSubmit={addExpenseHandler}>
+                <div className={styles.formHeader}>New Expense</div>
+                <form className={"pb-2"+' ' + styles.formBody} onSubmit={addExpenseHandler}>
                     <div className="pb-3">
                         <label className="form-label" htmlFor="expense_title">
                             Expense title
