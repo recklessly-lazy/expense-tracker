@@ -3,4 +3,5 @@ export interface Expense {
     date: string;
     title: string;
     amount: number;
+    description?: string
 }

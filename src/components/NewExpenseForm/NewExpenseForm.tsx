@@ -19,6 +19,7 @@ function NewExpenseForm({
     const [expenseTitle, setExpenseTitle] = useState("");
     const [expenseAmount, setExpenseAmount] = useState(0);
     const [expenseDate, setExpenseDate] = useState("");
+    const [expenseDescription, setExpenseDescription] = useState("");
 
     const [expenseTitleErr, setExpenseTitleErr] = useState("");
     const [expenseAmountErr, setExpenseAmountErr] = useState("");
@@ -35,9 +36,9 @@ function NewExpenseForm({
     }, [show]);
 
     function clearFormData() {
-        setExpenseTitle('');
+        setExpenseTitle("");
         setExpenseAmount(0);
-        setExpenseDate('');
+        setExpenseDate("");
     }
 
     function validateForm() {
@@ -174,6 +175,29 @@ function NewExpenseForm({
                             onChange={(e) => setExpenseDate(e.target.value)}
                         />
                         <div className="text-danger">{expenseDateErr}</div>
+                    </div>
+                    <div className="pb-3">
+                        <label className="form-label" htmlFor="description">
+                            Description
+                        </label>
+                        <textarea
+                            className="form-control"
+                            name="description"
+                            id="description"
+                            cols={10}
+                            rows={3}
+                            onChange={(e) =>
+                                setExpenseDescription(e.target.value)
+                            }
+                        ></textarea>
+                        {/* <input
+                            className="form-control"
+                            type="date"
+                            id="expense_date"
+                            name="expense_date"
+                            onChange={(e) => setExpenseDate(e.target.value)}
+                        /> */}
+                        {/* <div className="text-danger">{expenseDateErr}</div> */}
                     </div>
                     <button type="submit" className="btn btn-primary">
                         Add

@@ -4,6 +4,7 @@ import styles from "./ExpenseItem.module.scss";
 import { useAppDispatch } from "../../hooks/hooks";
 import { removeExpense } from "../../reducers/ExpenseListReducer";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import { useNavigate } from "react-router-dom";
 
 const DateComp = ({ dateStr }: { dateStr: string }) => {
     let date = new Date(dateStr);
@@ -19,6 +20,8 @@ const DateComp = ({ dateStr }: { dateStr: string }) => {
 };
 
 function ExpenseItem({ expense }: { expense: Expense }) {
+    const navigate = useNavigate();
+
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
     const deleteExpense = (isConfirmed: boolean = false) => {

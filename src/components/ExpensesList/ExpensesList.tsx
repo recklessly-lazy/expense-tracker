@@ -12,7 +12,7 @@ function ExpensesList() {
     const expenses = useAppSelector((state) => state.expenses);
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
+    async function fetchExpenses() {
         console.log("inside useEffect of EXPLIST");
 
         const fetchData = async () => {
@@ -22,6 +22,9 @@ function ExpensesList() {
             dispatch(initExpenses(expenses.expenses));
         };
         fetchData();
+    }
+    useEffect(() => {
+        fetchExpenses();
     }, []);
 
     return (
