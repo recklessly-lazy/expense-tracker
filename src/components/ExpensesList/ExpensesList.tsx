@@ -10,22 +10,7 @@ import { initExpenses } from "../../reducers/ExpenseListReducer";
 
 function ExpensesList() {
     const expenses = useAppSelector((state) => state.expenses);
-    const dispatch = useAppDispatch();
 
-    async function fetchExpenses() {
-        console.log("inside useEffect of EXPLIST");
-
-        const fetchData = async () => {
-            const data = await axios.get("/src/db/db.json");
-            const expenses = data.data;
-            console.log(expenses);
-            dispatch(initExpenses(expenses.expenses));
-        };
-        fetchData();
-    }
-    useEffect(() => {
-        fetchExpenses();
-    }, []);
 
     return (
         <div className={styles.listContainer}>

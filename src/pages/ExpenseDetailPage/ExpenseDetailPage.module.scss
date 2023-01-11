@@ -1,0 +1,35 @@
+.expenseDetailPage {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.expenseDetailItem {
+    padding: 30px;
+    box-shadow: 3px 5px 10px rgba(68, 68, 68, 0.433);
+    border-radius: 5px;
+    min-width: 60%;
+    display: block;
+    margin-top: 80px;
+    background-color: rgb(254, 247, 255);
+}
+
+.label{
+    min-width: 40%;
+    text-align: left;
+}
+
+.value{
+    padding-left: 50px;
+    text-align: left;
+}
+
+@media (min-width: 750px){
+    .expenseDetailItem{
+            min-width: 30%;
+    }
+}
