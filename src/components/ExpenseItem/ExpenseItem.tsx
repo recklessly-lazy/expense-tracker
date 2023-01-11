@@ -35,14 +35,14 @@ function ExpenseItem({ expense }: { expense: Expense }) {
                 show={showModal}
                 confirm={deleteExpense}
             />
-            <div
-                className={styles.expenseItem}
-                onClick={() => {
-                    navigate(`expenses/${expense.id}`);
-                }}
-            >
+            <div className={styles.expenseItem}>
                 <div className="d-flex flex-row justify-content-between container">
-                    <div className="d-flex flex-row justify-content-evenly align-items-center">
+                    <div
+                        onClick={() => {
+                            navigate(`expenses/${expense.id}`);
+                        }}
+                        className="d-flex flex-row justify-content-evenly align-items-center"
+                    >
                         <DateComp dateStr={expense.date} />
                         <h4 className="ps-5 mb-0">{expense.title}</h4>
                     </div>
