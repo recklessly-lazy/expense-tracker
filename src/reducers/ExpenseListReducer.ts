@@ -23,10 +23,13 @@ export const ExpenseSlice = createSlice({
                 (expense) => expense.id !== action.payload.id
             );
         },
+        initExpenses:(state, action: PayloadAction<Array<Expense>>) =>{
+            state.expenses = action.payload
+        }
     },
 });
 
 export default ExpenseSlice.reducer;
 
-export const { addExpense, removeExpense } = ExpenseSlice.actions;
+export const { addExpense, removeExpense,initExpenses } = ExpenseSlice.actions;
 export const selectExpense = (state: RootState) => state.expenses.expenses;
