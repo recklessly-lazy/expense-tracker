@@ -36,33 +36,31 @@ function ExpenseItem({ expense }: { expense: Expense }) {
                 confirm={deleteExpense}
             />
             <div className={styles.expenseItem}>
-                <div className="d-flex flex-row justify-content-between container">
-                    <div
+                {/* <div className="d-flex flex-row justify-content-between container"> */}
+                <div
+                    onClick={() => {
+                        navigate(`expenses/${expense.id}`);
+                    }}
+                    className={`d-flex flex-column justify-content-evenly align-items-center w-100 ${styles.dateAndTitle}`}
+                >
+                    <DateComp dateStr={expense.date} />
+                    <h4 className="mb-0">{expense.title}</h4>
+                </div>
+                <div className="w-100 pt-3 mb-0 d-flex flex-row justify-content-end align-items-center">
+                    <strong className="pe-4">&#8377;{expense.amount}</strong>
+                    <button
+                        className={styles.deleteBtn}
                         onClick={() => {
-                            navigate(`expenses/${expense.id}`);
+                            console.log("oops ! inside onclick ");
+                            setShowModal(true);
                         }}
-                        className="d-flex flex-row justify-content-evenly align-items-center"
                     >
-                        <DateComp dateStr={expense.date} />
-                        <h4 className="ps-5 mb-0">{expense.title}</h4>
-                    </div>
-                    <div className="mb-0 d-flex flex-row justify-content-between align-items-center">
-                        <strong className="pe-4">
-                            &#8377;{expense.amount}
-                        </strong>
-                        <button
-                            className={styles.deleteBtn}
-                            onClick={() => {
-                                console.log("oops ! inside onclick ");
-                                setShowModal(true);
-                            }}
-                        >
-                            {" "}
-                            <i className="bi bi-trash3-fill text-danger"></i>{" "}
-                        </button>
-                    </div>
+                        {" "}
+                        <i className="bi bi-trash3-fill text-danger"></i>{" "}
+                    </button>
                 </div>
             </div>
+            {/* </div> */}
         </>
     );
 }

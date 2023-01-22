@@ -21,7 +21,7 @@ function ExpensesList() {
                     <center>
                         {" "}
                         {/* <i className="bi bi-trash3-fill" style={{fontSize: '100px'}}></i>{" "} */}
-                        <img src={empty} />
+                        <img style={{maxWidth: "100%"}} src={empty} />
                     </center>
                 </>
             ) : null}

@@ -1,5 +1,5 @@
 .modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -9,6 +9,22 @@
     border-radius: 5px;
     box-shadow: 1px 3px 8px rgba(68, 68, 68, 0.485), 3px 6px 13px rgba(68, 68, 68, 0.419), inset 0 -1px 3px rgba(68, 68, 68, 0.501);
     animation: entry 0.3s ease-in forwards;
+    width: 80%;
+}
+
+@media (min-width: 700px) {
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 40px;
+        z-index: 10;
+        background-color: whitesmoke;
+        border-radius: 5px;
+        box-shadow: 1px 3px 8px rgba(68, 68, 68, 0.485), 3px 6px 13px rgba(68, 68, 68, 0.419), inset 0 -1px 3px rgba(68, 68, 68, 0.501);
+        animation: entry 0.3s ease-in forwards;
+    }
 }
 
 .modalExit {

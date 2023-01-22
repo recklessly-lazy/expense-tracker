@@ -3,40 +3,80 @@
     background-color: rgb(255, 252, 246);
     border-radius: 5px;
     box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.252), inset 0 -1px 1px rgba(0, 0, 0, 0.236);
-    width: 90%;
+    width: 80%;
     margin-bottom: 15px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     align-items: center;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 @media (min-width: 700px) {
+
+
     .expenseItem {
+        padding: 20px;
+        background-color: rgb(255, 252, 246);
+        border-radius: 5px;
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.252), inset 0 -1px 1px rgba(0, 0, 0, 0.236);
+        width: 90%;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        cursor: pointer;
+        flex-wrap: nowrap;
         width: 60%;
+    }
+
+    .dateAndTitle {
+        width: auto !important;
+        flex-direction: row !important;
+    }
+
+    .dateComp {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        border-radius: 50%;
+        min-width: 80px;
+        min-height: 80px;
+        padding: 10px 30px;
+        background: linear-gradient(to right, #4e0142, #680055);
+        // border: 2px solid rgb(152, 104, 197);
+        box-shadow: 0 0 2px #666;
     }
 }
 
 @media (max-width: 450px) {
-    .expenseItem{
-        width: 100%;
+    .expenseItem {
+        width: 90%;
     }
 }
 
 .dateComp {
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
-    border-radius: 50%;
-    min-width: 80px;
-    min-height: 80px;
-    padding: 10px 30px;
+    border-radius: 15px;
+    width: 100%;
+    padding: 15px 10px;
+    margin-bottom: 20px;
     background: linear-gradient(to right, #4e0142, #680055);
-    // border: 2px solid rgb(152, 104, 197);
-    box-shadow: 0 0 2px #666;
+    // border: 2px solid rgb(90, 0, 106);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.421);
 }
+.dateAndTitle{
+    align-items: center;
+    justify-content: center !important;
+}
+
 
 .expense-date {
     display: flex;

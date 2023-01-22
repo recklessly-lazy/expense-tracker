@@ -128,80 +128,97 @@ function NewExpenseForm({
                     if (!show) setRender(false);
                 }}
             >
-                <div className={styles.formHeader}>New Expense</div>
                 <form
                     className={"pb-2" + " " + styles.formBody}
                     onSubmit={addExpenseHandler}
                 >
-                    <div className="pb-3">
-                        <label className="form-label" htmlFor="expense_title">
-                            Expense title
-                        </label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            id="expense_title"
-                            name="expense_title"
-                            placeholder="expense title"
-                            onChange={(e) => setExpenseTitle(e.target.value)}
-                        />
-                        <div className="text-danger">{expenseTitleErr}</div>
+                    <div className={styles.formHeader}>
+                        <strong>New Expense</strong>
                     </div>
-                    <div className="pb-3">
-                        <label className="form-label" htmlFor="expense_amount">
-                            Amount
-                        </label>
-                        <input
-                            className="form-control"
-                            type="number"
-                            id="expense_amount"
-                            name="expense_amount"
-                            placeholder="expense amount"
-                            onChange={(e) =>
-                                setExpenseAmount(parseFloat(e.target.value))
-                            }
-                        />
-                        <div className="text-danger">{expenseAmountErr}</div>
-                    </div>
-                    <div className="pb-3">
-                        <label className="form-label" htmlFor="expense_amount">
-                            Date
-                        </label>
-                        <input
-                            className="form-control"
-                            type="date"
-                            id="expense_date"
-                            name="expense_date"
-                            onChange={(e) => setExpenseDate(e.target.value)}
-                        />
-                        <div className="text-danger">{expenseDateErr}</div>
-                    </div>
-                    <div className="pb-3">
-                        <label className="form-label" htmlFor="description">
-                            Description
-                        </label>
-                        <textarea
-                            className="form-control"
-                            name="description"
-                            id="description"
-                            cols={10}
-                            rows={3}
-                            onChange={(e) =>
-                                setExpenseDescription(e.target.value)
-                            }
-                        ></textarea>
-                        {/* <input
+                    <div className={styles.bodyContent}>
+                        <div className="pb-3">
+                            <label
+                                className="form-label"
+                                htmlFor="expense_title"
+                            >
+                                Expense title
+                            </label>
+                            <input
+                                className="form-control"
+                                type="text"
+                                id="expense_title"
+                                name="expense_title"
+                                placeholder="expense title"
+                                onChange={(e) =>
+                                    setExpenseTitle(e.target.value)
+                                }
+                            />
+                            <div className="text-danger">{expenseTitleErr}</div>
+                        </div>
+                        <div className="pb-3">
+                            <label
+                                className="form-label"
+                                htmlFor="expense_amount"
+                            >
+                                Amount
+                            </label>
+                            <input
+                                className="form-control"
+                                type="number"
+                                id="expense_amount"
+                                name="expense_amount"
+                                placeholder="expense amount"
+                                onChange={(e) =>
+                                    setExpenseAmount(parseFloat(e.target.value))
+                                }
+                            />
+                            <div className="text-danger">
+                                {expenseAmountErr}
+                            </div>
+                        </div>
+                        <div className="pb-3">
+                            <label
+                                className="form-label"
+                                htmlFor="expense_amount"
+                            >
+                                Date
+                            </label>
+                            <input
+                                className="form-control"
+                                type="date"
+                                id="expense_date"
+                                name="expense_date"
+                                onChange={(e) => setExpenseDate(e.target.value)}
+                            />
+                            <div className="text-danger">{expenseDateErr}</div>
+                        </div>
+                        <div className="pb-3">
+                            <label className="form-label" htmlFor="description">
+                                Description
+                            </label>
+                            <textarea
+                                className="form-control"
+                                name="description"
+                                id="description"
+                                cols={10}
+                                rows={3}
+                                onChange={(e) =>
+                                    setExpenseDescription(e.target.value)
+                                }
+                            ></textarea>
+                            {/* <input
                             className="form-control"
                             type="date"
                             id="expense_date"
                             name="expense_date"
                             onChange={(e) => setExpenseDate(e.target.value)}
                         /> */}
-                        {/* <div className="text-danger">{expenseDateErr}</div> */}
+                            {/* <div className="text-danger">{expenseDateErr}</div> */}
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                            Add
+                        </button>
                     </div>
-                    <button type="submit" className="btn btn-primary">
-                        Add
-                    </button>
                 </form>
             </div>
         </>
