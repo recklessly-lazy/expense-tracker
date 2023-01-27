@@ -33,3 +33,8 @@
         box-shadow: 0 0 0;
     }
 }
+
+.btnRotate {
+    transform: rotateZ(45deg) !important;
+    display: block;
+}

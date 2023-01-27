@@ -1,66 +1,57 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import Layout from "./Layout/Layout";
 import ExpensePage from "./pages/ExpensePage/ExpensePage";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+    createBrowserRouter,
+    redirect,
+    RouterProvider,
+    useNavigate,
+} from "react-router-dom";
 import ExpenseDetail from "./pages/ExpenseDetailPage/ExpenseDetailPage";
 import axios from "axios";
 import { initExpenses } from "./reducers/ExpenseListReducer";
 import { useAppDispatch } from "./hooks/hooks";
+import { app } from "../src/firebase/firebase-config";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+} from "firebase/auth";
+import AuthContextProvider, { AuthContext } from "./Auth/AuthContext";
+import Authentication from "./pages/Authentication/Authentication";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <ExpensePage />,
-        // children: [
-        //     {
-        //         path: "subroute",
-        //         element: (function () {
-        //             console.log("inside subroute !!!!!");
-
-        //             return (
-        //                 <>
-        //                     <h4>Sub route checkn</h4>
-        //                 </>
-        //             );
-        //         })(),
-        //     },
-        // ],
-    },
-    {
-        path: "expenses/:expenseId",
-        element: <ExpenseDetail />,
+        element: <Layout />,
+        children: [
+            {
+                path: "/",
+                element: <ExpensePage />,
+            },
+            {
+                path: "/expenses/:expenseId",
+                element: <ExpenseDetail />,
+            },
+            {
+                path: "/login",
+                element: <Authentication />,
+            },
+        ],
     },
 ]);
 
 function App(): any {
-
     //initializing expenses from mock db json
-
-    const dispatch = useAppDispatch();
-    async function fetchExpenses() {
-        console.log("inside useEffect of EXPLIST");
-
-        const fetchData = async () => {
-            const data = await axios.get("/src/db/db.json");
-            const expenses = data.data;
-            console.log(expenses);
-            dispatch(initExpenses(expenses.expenses));
-        };
-        fetchData();
-    }
-    useEffect(() => {
-        fetchExpenses();
-    }, []);
-    //init end
 
 
     return (
-        <Layout>
+        <AuthContextProvider>
             <RouterProvider router={router} />
-        </Layout>
+        </AuthContextProvider>
     );
 }
 

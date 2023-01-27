@@ -1,10 +1,14 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext, useEffect } from "react";
 import Header from "../components/Header/Header";
 import styles from "./Layout.module.scss";
+import { Outlet, redirect, useNavigate } from "react-router-dom";
+
 
 const headerHeight = 80;
 
-function Layout({ children }: { children: ReactNode }) {
+function Layout() {
+
+
     return (
         <>
             <Header height={headerHeight} />
@@ -15,7 +19,7 @@ function Layout({ children }: { children: ReactNode }) {
                     top: `${headerHeight}px`,
                 }}
             >
-                {children}
+                <Outlet />
             </main>
         </>
     );

@@ -1,21 +1,29 @@
-import React from "react";
-import style from "./Header.module.scss";
+import React, { useContext } from "react";
+import styles from "./Header.module.scss";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Auth/AuthContext";
 
 function Header({ height }: { height: string | number }) {
+    const context = useContext(AuthContext);
     return (
         <div
-            className={style.header}
+            className={styles.header}
             style={{
                 height: height + "px",
             }}
         >
             <h5>
-                <strong>Expense Tracker</strong>
+                <Link to={"/"} className={styles.links}>
+                    <strong>Expense Tracker</strong>
+                </Link>
             </h5>
-            {/* <ul className={style.ul}>
-                <li>Link 1</li>
-                <li>Link 2</li>
-            </ul> */}
+            <nav>
+                {!context.isLoggedIn ? (
+                    <Link className={styles.links} to={"/login"}>
+                        Login
+                    </Link>
+                ) : null}
+            </nav>
         </div>
     );
 }
