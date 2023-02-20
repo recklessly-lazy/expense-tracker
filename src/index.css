@@ -14,6 +14,23 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 }
+#loading {
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+#loading::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.63;
+    backdrop-filter: blur(1px);
+    content: "";
+    z-index: -1;
+}
 
 a {
     font-weight: 500;
@@ -73,4 +90,3 @@ button:focus-visible {
         background-color: #686868;
     }
 } */
-

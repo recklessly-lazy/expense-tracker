@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useContext, useEffect, useState } from "react";
 import styles from "./NewExpenseForm.module.scss";
 import Form from "react-bootstrap/Form";
 import BackDrop from "../Backdrop/BackDrop";
@@ -6,6 +6,9 @@ import { Expense } from "../../models/Expense";
 import { useAppDispatch } from "../../hooks/hooks";
 import { addExpense } from "../../reducers/ExpenseListReducer";
 import { v4 as uuidv4 } from "uuid";
+import { push, ref, remove, set } from "firebase/database";
+import { database } from "../../firebase/firebase-config";
+import { AuthContext } from "../../Auth/AuthContext";
 function NewExpenseForm({
     show,
     onExpenseAdd,
@@ -14,6 +17,8 @@ function NewExpenseForm({
     onExpenseAdd: Function;
 }) {
     console.log("show =", show);
+
+    let context = useContext(AuthContext);
 
     const [render, setRender] = useState(show);
     const [expenseTitle, setExpenseTitle] = useState("");
@@ -95,6 +100,17 @@ function NewExpenseForm({
         );
         return isFormValid;
     }
+
+    function addNewExpense(expense: Expense) {
+        // let expenseRef = push(
+        let expenseRef = ref(
+            database,
+            `/users/${context?.user?.uid}/expenses/${expense.id}`
+        );
+
+        set(expenseRef, expense);
+        remove;
+    }
     function addExpenseHandler(event: FormEvent) {
         event.preventDefault();
         let newExpense: Expense;
@@ -106,10 +122,12 @@ function NewExpenseForm({
                 amount: expenseAmount,
                 title: expenseTitle,
                 date: expenseDate,
+                description: expenseDescription,
             };
             console.log("newExp = ", newExpense);
             console.log("date ===", new Date(newExpense.date));
-            dispatch(addExpense(newExpense));
+            addNewExpense(newExpense);
+            // dispatch(addExpense(newExpense));
             onExpenseAdd();
             clearFormData();
         } else {
@@ -118,10 +136,41 @@ function NewExpenseForm({
     }
     const classes = [styles.form, show ? styles.entry : styles.exit].join(" ");
     console.log("classes = ", classes);
+
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
+
+    // the required distance between touchStart and touchEnd to be detected as a swipe
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: any) => {
+        //  alert("touch started")
+        setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+        setTouchStart(e.targetTouches[0].clientY);
+    };
+
+    const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientY);
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isUpSwipe = distance > minSwipeDistance;
+        const isDownSwipe = distance < -minSwipeDistance;
+        if (isDownSwipe || isUpSwipe)
+            console.log("swipe", isDownSwipe ? "down" : "up");
+        // add your conditional logic here
+        if (isDownSwipe) {
+            // alert(`touchstart = ${touchStart}, touchend = ${touchEnd}`);
+            onExpenseAdd();
+        }
+    };
     let content = (
         <>
             <BackDrop show={show} onBackdropClick={onExpenseAdd} />
             <div
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
                 className={classes}
                 onAnimationEnd={() => {
                     console.log("inside animation end");
@@ -223,6 +272,7 @@ function NewExpenseForm({
             </div>
         </>
     );
+
     return <>{render && content}</>;
 }
 

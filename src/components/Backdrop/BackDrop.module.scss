@@ -6,34 +6,44 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.4);
     transform: translate3d(0, 0, 0);
-    // backdrop-filter: blur(1px);
     z-index: 6;
-    animation: entry 0.3s ease-in forwards;
-
 }
 
+.enter {
+    opacity: 0;
+}
+
+.enterActive {
+    opacity: 1;
+    transition: all 0.5s;
+}
 
 
 .exit {
-    animation: exit 0.3s ease-out forwards;
+    opacity: 1;
 }
 
-@keyframes entry {
-    0% {
-        opacity: 0;
-        backdrop-filter: blur(0px);
-    }
-
-    99% {
-        opacity: 0.99;
-        backdrop-filter: blur(0px);
-    }
-
-    100% {
-        opacity: 1;
-        backdrop-filter: blur(1px);
-    }
+.exitActive {
+    opacity: 0;
+    transition: all 0.5s;
 }
+
+// @keyframes entry {
+//     0% {
+//         opacity: 0;
+//         backdrop-filter: blur(0px);
+//     }
+
+//     99% {
+//         opacity: 0.99;
+//         backdrop-filter: blur(0px);
+//     }
+
+//     100% {
+//         opacity: 1;
+//         backdrop-filter: blur(1px);
+//     }
+// }
 
 @keyframes exit {
     from {

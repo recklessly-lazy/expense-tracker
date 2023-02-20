@@ -16,6 +16,7 @@ export const ExpenseSlice = createSlice({
     initialState,
     reducers: {
         addExpense: (state, action: PayloadAction<Expense>) => {
+            console.log("adding new expense");
             state.expenses.push(action.payload);
         },
         removeExpense: (state, action: PayloadAction<Expense>) => {
@@ -23,13 +24,15 @@ export const ExpenseSlice = createSlice({
                 (expense) => expense.id !== action.payload.id
             );
         },
-        initExpenses:(state, action: PayloadAction<Array<Expense>>) =>{
-            state.expenses = action.payload
-        }
+        initExpenses: (state, action: PayloadAction<Array<Expense>>) => {
+            console.log("init expenses =", action);
+
+            state.expenses = action.payload;
+        },
     },
 });
 
 export default ExpenseSlice.reducer;
 
-export const { addExpense, removeExpense,initExpenses } = ExpenseSlice.actions;
+export const { addExpense, removeExpense, initExpenses } = ExpenseSlice.actions;
 export const selectExpense = (state: RootState) => state.expenses.expenses;

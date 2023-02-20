@@ -8,6 +8,7 @@
     text-align: start;
     font-size: 14px;
     font-weight: 600;
+    animation: loginFormEntry 0.5s ease-in 0s;
     input,
     input:focus {
         outline: none !important;
@@ -19,6 +20,17 @@
         outline: none !important;
         border: none !important;
         box-shadow: 0 0 3px 1px #f0e2ff, inset 0 0 3px 1px #f1e4ff;
+    }
+}
+
+@keyframes loginFormEntry {
+    from{
+        opacity: 0;
+        max-height: 0;
+    }
+    to{
+        opacity: 1;
+        max-height: 600px;
     }
 }
 

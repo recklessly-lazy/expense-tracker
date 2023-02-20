@@ -12,7 +12,8 @@
     justify-content: space-between;
     box-shadow: 0 0 10px 0px rgb(58, 58, 58), 0 0 3px #222;
     color: white;
-    z-index: 5;
+    z-index: 10;
+
 }
 
 .links{
@@ -30,4 +31,16 @@
         list-style: none;
         padding-left: 15px;
     }
+}
+
+.iconBtn{
+    color: white;
+    transition: all 0.4s;
+    &:hover{
+        color: rgb(218, 175, 255);
+    }
+}
+
+.icon{
+    font-size: 25px;
 }

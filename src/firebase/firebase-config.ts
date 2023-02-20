@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,8 +15,12 @@ const firebaseConfig = {
     messagingSenderId: "984479064591",
     appId: "1:984479064591:web:9f60e0cdc317f2f8ab797a",
     measurementId: "G-S8H03VZZTN",
+    databaseURL: "https://expense-tracker-poc-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Initialize Realtime Database and get a reference to the service
+export const database = getDatabase(app);
+
+// const analytics = getAnalytics(app);

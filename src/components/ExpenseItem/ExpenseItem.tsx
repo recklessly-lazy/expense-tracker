@@ -5,6 +5,9 @@ import { useAppDispatch } from "../../hooks/hooks";
 import { removeExpense } from "../../reducers/ExpenseListReducer";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
+import { ref, remove } from "firebase/database";
+import { app, database } from "../../firebase/firebase-config";
+import { getAuth } from "firebase/auth";
 
 const DateComp = ({ dateStr }: { dateStr: string }) => {
     let date = new Date(dateStr);
@@ -25,7 +28,17 @@ function ExpenseItem({ expense }: { expense: Expense }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
     const deleteExpense = (isConfirmed: boolean = false) => {
-        if (isConfirmed) dispatch(removeExpense(expense));
+        if (isConfirmed) {
+            let user = getAuth(app).currentUser;
+            if (user) {
+                let rmref = ref(
+                    database,
+                    "/users/" + user?.uid + `/expenses/${expense.id}`
+                );
+                remove(rmref)
+                dispatch(removeExpense(expense));
+            }
+        }
         setShowModal(false);
     };
     return (

@@ -54,15 +54,21 @@ const ExpenseDetailItem = ({ expense }: { expense?: Expense }) => {
 
 function ExpenseDetailPage() {
     const { expenseId } = useParams<params>();
+    const navigate = useNavigate()
     const expense = useAppSelector((state) => state.expenses.expenses).find(
         (exp) => exp.id === expenseId
     );
 
-    return (
-        <div className={styles.expenseDetailPage}>
-            <ExpenseDetailItem expense={expense} />
-        </div>
-    );
+    if (expense)
+        return (
+            <div className={styles.expenseDetailPage}>
+                <ExpenseDetailItem expense={expense} />
+            </div>
+        );
+    else {
+        navigate("/")
+        return null
+    }
 }
 
 export default ExpenseDetailPage;

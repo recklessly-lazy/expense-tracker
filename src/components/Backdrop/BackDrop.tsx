@@ -13,12 +13,15 @@ function BackDrop({
     return (
         <>
             <CSSTransition
+                timeout={500}
                 in={show}
                 unmountOnExit
                 mountOnEnter
                 classNames={{
-                    enter: styles.backDrop,
+                    enter: styles.enter,
+                    enterActive: styles.enterActive,
                     exit: styles.exit,
+                    exitActive: styles.exitActive,
                 }}
                 addEndListener={() => {}}
                 nodeRef={nodeRef}

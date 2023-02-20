@@ -1,0 +1,29 @@
+.sideNav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    max-width: 50%;
+    height: 100%;
+    background-color: azure;
+    z-index: 10;
+    width: 50%;
+}
+
+.enter {
+    transform: translateX(-50vw);
+}
+
+.enterActive {
+    transform: translate(0);
+    transition: all 500ms;
+}
+
+.exit {
+    transform: translate(0);
+}
+
+.exitActive {
+    transform: translateX(-50vw);
+    transition: all 500ms;
+}
