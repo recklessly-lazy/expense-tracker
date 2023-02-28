@@ -4,27 +4,32 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.614);
     transform: translate3d(0, 0, 0);
     z-index: 6;
+    backdrop-filter: blur(1px);
 }
 
 .enter {
     opacity: 0;
+    backdrop-filter: blur(0px);
 }
 
 .enterActive {
     opacity: 1;
+    backdrop-filter: blur(1px);
     transition: all 0.5s;
 }
 
 
 .exit {
     opacity: 1;
+    backdrop-filter: blur(1px);
 }
 
 .exitActive {
     opacity: 0;
+    backdrop-filter: blur(0px);
     transition: all 0.5s;
 }
 

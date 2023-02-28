@@ -26,6 +26,7 @@ import AuthContextProvider, { AuthContext } from "./Auth/AuthContext";
 import Authentication from "./pages/Authentication/Authentication";
 import { child, get, ref } from "firebase/database";
 import { async } from "@firebase/util";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 function getUser() {
     let user = localStorage.getItem("user");
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: "/expenses/:expenseId",
                 element: <ExpenseDetail />,
+            },
+            {
+                path: "/profile",
+                element: <UserProfile />,
             },
         ],
     },

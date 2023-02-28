@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .expenseDetailPage {
     display: flex;
     padding: 20px;
@@ -6,6 +8,7 @@
     height: 100%;
     align-items: center;
     justify-content: flex-start;
+    background: $backgroundColor;
 }
 
 .expenseDetailItem {
@@ -18,18 +21,20 @@
     background-color: rgb(254, 247, 255);
 }
 
-.label{
+.label {
     min-width: 40%;
     text-align: left;
 }
 
-.value{
+.value {
     padding-left: 50px;
     text-align: left;
+    word-break: break-word;
 }
 
-@media (min-width: 750px){
-    .expenseDetailItem{
-            min-width: 30%;
+@media (min-width: 750px) {
+    .expenseDetailItem {
+        min-width: 30%;
+        max-width: 50%;
     }
 }

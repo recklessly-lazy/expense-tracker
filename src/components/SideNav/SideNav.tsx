@@ -39,7 +39,7 @@ function SideNav({
                 <div ref={nodeRef}className={styles.sideNav}>
                     <ul>
                         <li>
-                            <Link to={"/profile"}>Profile</Link>
+                            <Link to={"/profile"} >Profile</Link>
                         </li>
                         <li>
                             <Link

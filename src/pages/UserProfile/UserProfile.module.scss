@@ -1,0 +1,138 @@
+@import '../../scss/variables';
+
+.profilePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #e7d6ff, #eedfff);
+    background: $backgroundColor;
+    // background-color: white;
+
+}
+
+
+.profileForm {
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.21);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
+    outline: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: start;
+    max-width: 85%;
+    overflow: hidden;
+
+}
+
+.profileFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.405), 2px 5px 14px rgba(0, 0, 0, 0.203);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.155);
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    form{
+        width: 100%;
+        text-align: start;
+    }
+}
+
+.imageContainer {
+    width: 150px;
+    height: 150px;
+    border: 2px solid white;
+    background-origin: border-box;
+    border-radius: 50%;
+    box-shadow: 1px 3px 17px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-bottom: 50px;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: calc(100% + 14px);
+        height: calc(100% + 14px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        // border: 2px solid white;
+        background: linear-gradient(to right, rgb(136, 0, 113), rgb(211, 37, 255), rgb(247, 234, 255), red);
+        background: linear-gradient(to bottom right, rgb(85, 0, 85), #e5caff, purple);
+        z-index: -1;
+        transition: all 0.5s;
+
+    }
+
+    &:hover::after {
+        // background: linear-gradient(to right, rgb(0, 255, 64), rgb(255, 0, 85));
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+}
+
+
+// .imageContainer {
+//     width: $imgWidth + 10px;
+//     height: $imgWidth + 10px;
+//     position: relative;
+//     border-radius: 50%;
+//     background: linear-gradient(to bottom right, rgb(85, 0, 85), rgb(224, 184, 255), purple);
+//     transition: all 0.5s;
+
+//     // background-size: 100%;
+//     &:hover {
+//         background-position: $imgWidth/2;
+//     }
+
+//     .img {
+//         width: $imgWidth;
+//         height: $imgWidth;
+//         border: 2px solid white;
+//         background-origin: border-box;
+//         border-radius: 50%;
+//         box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.3);
+//         background-size: cover;
+//         background-repeat: no-repeat;
+//         background-position: 50%;
+//         margin-bottom: 50px;
+//         position: absolute;
+//         cursor: pointer;
+//         top: 50%;
+//         /* position the top  edge of the element at the middle of the parent */
+//         left: 50%;
+//         /* position the left edge of the element at the middle of the parent */
+//         transform: translate(-50%, -50%);
+//     }
+
+//     // &::after {
+//     //     content: '';
+//     //     position: absolute;
+//     //     width: calc(100% + 14px);
+//     //     height: calc(100% + 14px);
+//     //     top: -7px;
+//     //     left: -7px;
+//     //     border-radius: 50%;
+//     //     // border: 2px solid white;
+//     //     background: linear-gradient(to right, rgb(136, 0, 113),rgb(211, 37, 255),rgb(247, 234, 255),red);
+//     //     z-index: -1;
+//     //     transition: all 0.5s;
+
+//     // }
+
+//     // &:hover::after {
+//     //     // background: linear-gradient(to right, rgb(0, 255, 64), rgb(255, 0, 85));
+//     //     transform: rotate(180deg);
+//     // }
+// }

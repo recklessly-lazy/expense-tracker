@@ -5,9 +5,50 @@
     padding: 20px;
     max-width: 50%;
     height: 100%;
-    background-color: azure;
-    z-index: 10;
+    background: radial-gradient(rgb(255, 255, 255),rgb(251, 246, 255));
+    z-index: 9;
     width: 50%;
+    box-shadow: 2px 7px 15px #00000039;
+    // border: 3px solid rgb(0, 0, 0);
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 10px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                background: radial-gradient( rgb(250, 241, 255), rgb(238, 223, 255));
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                // transform: scale(0);
+                opacity: 0;
+            }
+
+            &:active,
+            &:hover::before{
+                // transform: scale(1);
+                transition: all 0.6s;
+                opacity: 1;
+            }
+
+            &>a {
+                text-decoration: none;
+                color: black
+            }
+
+        }
+    }
 }
 
 .enter {

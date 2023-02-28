@@ -59,7 +59,7 @@ function ExpenseItem({ expense }: { expense: Expense }) {
                     <DateComp dateStr={expense.date} />
                     <h4 className="mb-0">{expense.title}</h4>
                 </div>
-                <div className="w-100 pt-3 mb-0 d-flex flex-row justify-content-end align-items-center">
+                <div className={"pt-3 mb-0 d-flex flex-row justify-content-end align-items-center"}>
                     <strong className="pe-4">&#8377;{expense.amount}</strong>
                     <button
                         className={styles.deleteBtn}

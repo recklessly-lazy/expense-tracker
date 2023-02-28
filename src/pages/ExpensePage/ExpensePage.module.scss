@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .expensePage {
     position: relative;
     display: flex;
@@ -14,7 +16,7 @@
     }
 
     // background: linear-gradient(to right, rgb(233, 251, 255), rgb(240, 255, 251));
-    background-color: rgba(203, 174, 209, 0.51);
+    background: $backgroundColor;
 }
 
 .addBtn {
