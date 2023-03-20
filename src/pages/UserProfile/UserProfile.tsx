@@ -1,75 +1,37 @@
-import React, { useContext, useRef, useState } from "react";
+import React, {
+    FormEventHandler,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 
 import Styles from "./UserProfile.module.scss";
 import { Form, InputGroup } from "react-bootstrap";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+    listAll,
+} from "firebase/storage";
 import { storage } from "../../firebase/firebase-config";
 import { AuthContext } from "../../Auth/AuthContext";
 import { updateProfile } from "firebase/auth";
+import BackDrop from "../../components/Backdrop/BackDrop";
+import { CSSTransition } from "react-transition-group";
+import UploadPhotoComp from "./UploadComponent/UploadComponent";
 
 function UserProfile() {
     const ctx = useContext(AuthContext);
     const [imgSrc, setImgSrc] = useState(ctx?.user?.photoURL);
 
     const [isEditMode, setIsEditMode] = useState(false);
-    const handleUpload = (event: React.BaseSyntheticEvent) => {
-        event.preventDefault();
-        const file: File = event.target[0]?.files[0];
-        console.log("file ===", file);
 
-        // Create the file metadata
-        /** @type {any} */
-        const metadata = {
-            contentType: "image/jpeg",
-        };
+    const [isDpEdit, setIsDpEdit] = useState(false);
 
-        const storageRef = ref(storage, `${ctx?.user?.uid}/dp/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const progress =
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log("Upload is " + progress + "% done");
-                switch (snapshot.state) {
-                    case "paused":
-                        console.log("Upload paused");
-                        break;
-                    case "running":
-                        console.log("upload running");
-                        break;
-                }
-            },
-            (error) => {
-                // A full list of error codes is available at
-                // https://firebase.google.com/docs/storage/web/handle-errors
-                switch (error.code) {
-                    case "storage/unauthorized":
-                        // User doesn't have permission to access the object
-                        break;
-                    case "storage/canceled":
-                        // User canceled the upload
-                        break;
-
-                    // ...
-
-                    case "storage/unknown":
-                        // Unknown error occurred, inspect error.serverResponse
-                        break;
-                }
-            },
-            () => {
-                // Upload completed successfully, now we can get the download URL
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log("File available at", downloadURL);
-                    setImgSrc(downloadURL);
-                    updateProfile(ctx?.user!, {
-                        photoURL: downloadURL,
-                    });
-                });
-            }
-        );
+    
+    const cancelUpload = () => {
+        setIsDpEdit(false);
     };
 
     const nameRef = useRef<HTMLInputElement>(null);
@@ -91,16 +53,44 @@ function UserProfile() {
         }
     };
 
+    const refreshDp = (url: string) => {
+        setImgSrc(url);
+    };
+
     return (
         <div className={Styles.profilePage}>
+            <UploadPhotoComp
+                show={isDpEdit}
+                refreshDp={refreshDp}
+                cancelUpload={cancelUpload}
+            />
             <div className={Styles.profileFormContainer}>
                 <div
                     className={Styles.imageContainer}
                     style={{
-                        backgroundColor:'white',
+                        backgroundColor: "white",
                         backgroundImage: `url(${imgSrc})`,
                     }}
-                ></div>
+                >
+                    <button
+                        className={
+                            "btn d-flex align-items-center justify-content-center " +
+                            Styles.editDp
+                        }
+                        onClick={() => {
+                            setIsDpEdit(true);
+                        }}
+                    >
+                        <i
+                            style={{
+                                color: "white",
+                                fontSize: "1.5rem",
+                                transform: "rotateY(180deg)",
+                            }}
+                            className="bi bi-camera-fill"
+                        ></i>
+                    </button>
+                </div>
                 <form>
                     <div className="offset-9 col-3">
                         <button
@@ -135,7 +125,6 @@ function UserProfile() {
                         />
                     </div>
                 </form>
-
             </div>
         </div>
     );

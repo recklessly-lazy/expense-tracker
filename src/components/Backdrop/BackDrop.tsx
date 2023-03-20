@@ -3,9 +3,11 @@ import styles from "./BackDrop.module.scss";
 import { CSSTransition } from "react-transition-group";
 
 function BackDrop({
+    opacity = 0.6,
     onBackdropClick,
     show,
 }: {
+    opacity?: number;
     onBackdropClick?: Function;
     show: boolean;
 }) {
@@ -32,6 +34,10 @@ function BackDrop({
                     }}
                     className={styles.backDrop}
                     ref={nodeRef}
+                    style={{
+                            backgroundColor:`rgba(0, 0, 0, ${opacity})`
+
+                    }}
                 ></div>
             </CSSTransition>
         </>

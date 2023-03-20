@@ -8,6 +8,7 @@
     height: 100%;
     background: linear-gradient(to right, #e7d6ff, #eedfff);
     background: $backgroundColor;
+    position: relative;
     // background-color: white;
 
 }
@@ -32,14 +33,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.405), 2px 5px 14px rgba(0, 0, 0, 0.203);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.405), 2px 5px 14px rgba(0, 0, 0, 0.203);
     border-radius: 8px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.155);
+    // background-color: rgba(73, 0, 64, 0.208);
+    background: linear-gradient(to bottom right,
+            rgba(62, 0, 57, 0.266),
+            rgba(62, 0, 57, 0.133),
+            rgba(62, 0, 57, 0.266));
     position: relative;
     z-index: 1;
     width: 90%;
-    form{
+
+    form {
         width: 100%;
         text-align: start;
     }
@@ -69,8 +75,8 @@
         transform: translate(-50%, -50%);
         border-radius: 50%;
         // border: 2px solid white;
-        background: linear-gradient(to right, rgb(136, 0, 113), rgb(211, 37, 255), rgb(247, 234, 255), red);
-        background: linear-gradient(to bottom right, rgb(85, 0, 85), #e5caff, purple);
+        // background: linear-gradient(to right, rgb(136, 0, 113), rgb(211, 37, 255), rgb(247, 234, 255), red);
+        background: linear-gradient(to bottom right, rgb(85, 0, 85), #dcb6ff, rgb(105, 0, 105));
         z-index: -1;
         transition: all 0.5s;
 
@@ -80,7 +86,46 @@
         // background: linear-gradient(to right, rgb(0, 255, 64), rgb(255, 0, 85));
         transform: translate(-50%, -50%) rotate(180deg);
     }
+
+    .editDp {
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 40px;
+        height: 40px;
+        background-color: rgb(76, 27, 68);
+        padding: 0;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.236);
+        border: none !important;
+
+        &:hover:active:focus {
+            background-color: rgb(136, 48, 122);
+        }
+    }
 }
+
+.imgList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listImg {
+    border: 5px solid rgb(255, 255, 255);
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.selectedImg {
+    border: 5px solid red;
+    transition: all 0.5s;
+    box-shadow: 0 0 5px green;
+}
+
+
 
 
 // .imageContainer {
